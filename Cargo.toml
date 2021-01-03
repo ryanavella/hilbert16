@@ -1,0 +1,16 @@
+[package]
+name = "hilbert16"
+version = "0.1.0"
+authors = ["Ryan Avella"]
+edition = "2018"
+
+description = "Hilbert transforms between 1D and 2D space, optimized for u16 coordinates."
+documentation = "https://docs.rs/hilbert16"
+readme = "README.md"
+homepage = "https://github.com/ryanavella/hilbert16"
+repository = "https://github.com/ryanavella/hilbert16"
+license = "Unlicense OR MIT"
+keywords = ["hilbert", "curve", "fractal", "image"]
+categories = ["visualization", "no-std", "graphics", "mathematics"]
+
+[dependencies]
