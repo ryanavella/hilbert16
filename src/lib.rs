@@ -120,9 +120,9 @@ impl Curve {
         1_u16.checked_shl(order.into()).map(|side_len| {
             let num_pnts = u32::from(side_len).pow(2);
             Self {
-                order,
-                side_len,
                 num_pnts,
+                side_len,
+                order,
             }
         })
     }
