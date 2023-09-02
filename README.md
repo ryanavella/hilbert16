@@ -13,9 +13,12 @@ use hilbert16::{Curve, Point};
 
 let order = 9;
 let curve = Curve::new(order).unwrap();
-            
+
 let p = Point { x: 175, y: 295 };
-println!("{:?} => {}", p, curve.dist_at(p).unwrap();
+let d = curve.dist_at(p).unwrap();
+println!("{p:?} => {d}");
+
 let d = 94_085;
-println!("{} => {:?}", d, curve.point_at(d).unwrap();
+let p = curve.point_at(d).unwrap();
+println!("{d} => {p:?}");
 ```
