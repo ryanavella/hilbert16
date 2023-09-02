@@ -26,14 +26,14 @@ pub struct Point {
 }
 
 impl From<(u16, u16)> for Point {
-    fn from(p: (u16, u16)) -> Self {
-        Self { x: p.0, y: p.1 }
+    fn from((x, y): (u16, u16)) -> Self {
+        Self { x, y }
     }
 }
 
 impl From<[u16; 2]> for Point {
-    fn from(p: [u16; 2]) -> Self {
-        Self { x: p[0], y: p[1] }
+    fn from([x, y]: [u16; 2]) -> Self {
+        Self { x, y }
     }
 }
 
@@ -61,10 +61,9 @@ impl Point {
     }
 
     const fn mirror_xy(self, n: u16) -> Self {
-        Self {
-            x: n - 1 - self.x,
-            y: n - 1 - self.y,
-        }
+        let x = n - 1 - self.x;
+        let y = n - 1 - self.y;
+        Self { x, y }
     }
 
     const fn rot(self, n: u16, rx: bool, ry: bool) -> Self {
@@ -76,10 +75,9 @@ impl Point {
     }
 
     const fn shift(self, s: u8, rx: bool, ry: bool) -> Self {
-        Self {
-            x: self.x + ((rx as u16) << s),
-            y: self.y + ((ry as u16) << s),
-        }
+        let x = self.x + ((rx as u16) << s);
+        let y = self.y + ((ry as u16) << s);
+        Self { x, y }
     }
 
     const fn rot_shift(self, s: u8, rx: bool, ry: bool) -> Self {
@@ -206,7 +204,8 @@ impl Curve {
     where
         P: Into<Point>,
     {
-        self.dist_at_impl(p.into())
+        let p = p.into();
+        self.dist_at_impl(p)
     }
 
     fn dist_at_impl(self, p: Point) -> Option<u32> {
@@ -283,8 +282,9 @@ mod tests {
             for dist in 0..num_pnts {
                 let p = curve.point_at(dist).unwrap();
                 assert_eq!(dist, curve.dist_at(p).unwrap());
-                assert!(p.x < side_len);
-                assert!(p.y < side_len);
+                let Point { x, y } = p;
+                assert!(x < side_len);
+                assert!(y < side_len);
             }
         }
     }
