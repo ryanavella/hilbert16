@@ -5,14 +5,14 @@
 //!
 //! ```
 //! use hilbert16::{Curve, Point};
-//! 
+//!
 //! let order = 9;
 //! let curve = Curve::new(order).unwrap();
-//! 
+//!
 //! let p = Point { x: 175, y: 295 };
 //! let d = curve.dist_at(p).unwrap();
 //! println!("{p:?} => {d}");
-//! 
+//!
 //! let d = 94_085;
 //! let p = curve.point_at(d).unwrap();
 //! println!("{d} => {p:?}");
